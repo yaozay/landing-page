@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
 </head>
 <body class="is-preload">
 
@@ -44,7 +46,6 @@
         <!-- Experience -->
         <section id="one" class="wrapper style2 spotlights">
 			<div class="inner"></div>
-				<h2>Experience</h2>
 				<section>
 					<a href="#" class="image"><img src="images/headstarter.png" alt="Software Engineer Resident" data-position="center center" /></a>
 					<div class="content">
@@ -57,7 +58,7 @@
 					</div>
 				</section>
 				<section>
-					<a href="#" class="image"><img src="images/experience2.jpg" alt="IT Intern" data-position="top center" /></a>
+					<a href="#" class="image"><img src="images/cougarcs.png" alt="IT Intern" data-position="top center" /></a>
 					<div class="content">
 						<div class="inner">
 							<h2>Designer</h2>
@@ -68,7 +69,7 @@
 					</div>
 				</section>
 				<section>
-					<a href="#" class="image"><img src="images/experience2.jpg" alt="IT Intern" data-position="top center" /></a>
+					<a href="#" class="image"><img src="images/hsa.png" alt="IT Intern" data-position="top center" /></a>
 					<div class="content">
 						<div class="inner">
 							<h2>IT Intern</h2>
@@ -159,8 +160,8 @@
                             <li>
                                 <h3>Social</h3>
                                 <ul class="icons">
-                                    <li><a href="https://github.com/yaozay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
                                     <li><a href="https://linkedin.com/in/yahyaozay" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/yaozay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -170,6 +171,7 @@
         </section>
 
     </div>
+	
 
     <!-- Footer -->
     <footer id="footer" class="wrapper style1-alt">
@@ -188,6 +190,33 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-
+	<script>
+		(function() {
+			emailjs.init("BXTI-W5OgiYpvjh-m");
+		})();
+	</script>
+	<script>
+		document.querySelector("form").addEventListener("submit", function(event) {
+			event.preventDefault(); // Prevent the form from refreshing the page
+	
+			// Get form values
+			const name = document.getElementById("name").value;
+			const email = document.getElementById("email").value;
+			const message = document.getElementById("message").value;
+	
+			// Send email using EmailJS
+			emailjs.send("service_8ygwc3c", "template_fwccb9h", {
+				name: name,
+				email: email,
+				message: message
+			}).then(function(response) {
+				alert("Message sent successfully!"); // Success message
+				document.querySelector("form").reset(); // Reset the form
+			}, function(error) {
+				alert("Failed to send the message. Please try again."); // Error message
+			});
+		});
+	</script>
+	
 </body>
 </html>
