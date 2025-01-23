@@ -30,18 +30,47 @@
 
         <!-- Intro -->
         <section id="intro" class="wrapper style1 fullscreen fade-up">
-            <div class="inner">
-                <h1>Yahya Ozay</h1>
-                <p>
+            <div class="inner" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+                <h1 style="font-size: 4rem; font-weight: bold; margin-bottom: 20px;">Yahya Ozay</h1>
+                <p style="font-size: 1.25rem; line-height: 1.8; max-width: 800px;">
                     Junior Computer Science student passionate about AI, software engineering, and crafting impactful projects. 
                     With hands-on experience in building intelligent systems, I aim to create innovative solutions that enhance 
                     user experiences and solve real-world problems.
                 </p>
-                <ul class="actions">
-                    <li><a href="#one" class="button scrolly">See My Work</a></li>
+                <ul class="actions" style="margin-top: 30px;">
+                    <li>
+                        <a href="#one" class="button scrolly" style="
+                            font-size: 0.8rem; 
+                            width: 150px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center; 
+                            align-items: center; 
+                            border: 2px solid #fff; 
+                            border-radius: 50px; 
+                            color: #fff; 
+                            background-color: transparent; 
+                            text-transform: uppercase; 
+                            font-weight: bold;
+                            letter-spacing: 1px;
+                            text-align: center; 
+                            transition: all 0.3s ease;
+                            ">
+                            See My Work
+                        </a>
+                    </li>
                 </ul>
+                
+                
             </div>
         </section>
+        <style>
+            .button.scrolly:hover {
+                color: #6633ff; /* Add a hover color for the text */
+                transform: scale(1.01); /* Slight zoom effect */
+                border-color: #fffffff1; /* Keep the border color */
+            }
+        </style>
 
         <!-- Experience -->
         <section id="one" class="wrapper style2 spotlights">
