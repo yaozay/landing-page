@@ -66,15 +66,14 @@
         </section>
         <style>
             .button.scrolly:hover {
-                color: #6633ff; /* Add a hover color for the text */
-                transform: scale(1.01); /* Slight zoom effect */
-                border-color: #fffffff1; /* Keep the border color */
+                color: #6633ff; 
+                transform: scale(1.01); 
+                border-color: #fffffff1; 
             }
         </style>
 
         <!-- Experience -->
         <section id="one" class="wrapper style2 spotlights">
-			<div class="inner"></div>
 				<section>
 					<a href="#" class="image"><img src="images/headstarter.png" alt="Software Engineer Resident" data-position="center center" /></a>
 					<div class="content">
@@ -160,15 +159,17 @@
                 </p>
                 <div class="split style1">
                     <section>
-                        <form method="post" action="#">
+                        <!-- IMPORTANT: Add id="contact-form" and match the input IDs 
+                             to what you're referencing in the JS below. -->
+                        <form id="contact-form" method="post" action="#">
                             <div class="fields">
                                 <div class="field half">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" />
+                                    <label for="from_name">Name</label>
+                                    <input type="text" name="from_name" id="from_name" />
                                 </div>
                                 <div class="field half">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" />
+                                    <label for="reply_to">Email</label>
+                                    <input type="email" name="reply_to" id="reply_to" />
                                 </div>
                                 <div class="field">
                                     <label for="message">Message</label>
@@ -186,7 +187,7 @@
                                 <h3>Social</h3>
                                 <ul class="icons">
                                     <li><a href="https://linkedin.com/in/yahyaozay" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="https://github.com/yaozay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                                    <li><a href="https://github.com/yaozay" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -196,16 +197,6 @@
         </section>
 
     </div>
-	
-
-    <!-- Footer -->
-    <footer id="footer" class="wrapper style1-alt">
-        <div class="inner">
-            <ul class="menu">
-                <li>&copy; Yahya Ozay. All rights reserved.</li>
-            </ul>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
@@ -215,34 +206,45 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-	<script>
-		(function() {
-			emailjs.init("BXTI-W5OgiYpvjh-m");
-		})();
-	</script>
-	<script>
-		document.querySelector("form").addEventListener("submit", function(event) {
-			event.preventDefault(); 
 
+    <!-- EmailJS Configuration -->
+    <script>
+      // 1) Initialize EmailJS with your public key:
+      (function() {
+        // Replace this with your actual EmailJS public key
+        emailjs.init("BXTI-W5OgiYpvjh-m");
+      })();
 
-			const name = document.getElementById("name").value;
-			const email = document.getElementById("email").value;
-			const message = document.getElementById("message").value;
-	
-			// Send email using EmailJS
-			emailjs.send("service_8ygwc3c", "template_fwccb9h", {
-				from_name: name,  
-				message: message, 
-				reply_to: email   
-			})
-			}).then(function(response) {
-				alert("Message sent successfully!"); 
-				document.querySelector("form").reset(); 
-			}, function(error) {
-				alert("Failed to send the message. Please try again.");
-			});
-		
-	</script>
+      // 2) Add the 'submit' event listener to your form:
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page refresh
+
+        // 3) Collect form values:
+        const fromName = document.getElementById('from_name').value;
+        const replyTo = document.getElementById('reply_to').value;
+        const message = document.getElementById('message').value;
+
+        // 4) Send email using your service/template IDs:
+        emailjs.send("service_8ygwc3c", "template_fwccb9h", {
+          to_name: "Yahya",       // Matches {{to_name}} in template
+          from_name: fromName,    // Matches {{from_name}}
+          reply_to: replyTo,      // Matches {{reply_to}}
+          message: message        // Matches {{message}}
+        })
+        .then(
+          function(response) {
+            alert("Message sent successfully!");
+            document.getElementById('contact-form').reset();
+          },
+          function(error) {
+            console.error("EmailJS error:", error);
+            alert("Failed to send the message. Please try again.");
+          }
+        );
+      });
+    </script>
+
+    
 	
 </body>
 </html>
